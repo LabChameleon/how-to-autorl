@@ -8,6 +8,9 @@ import operator
 import os
 from functools import reduce
 
+import numpy as np
+import numpy.random
+
 from hydra.core.plugins import Plugins
 from hydra.plugins.sweeper import Sweeper
 from hydra.types import HydraContext, TaskFunction
@@ -142,6 +145,8 @@ class DEHBSweeperBackend(Sweeper):
             search_space=self.search_space,
             seed=self.dehb_kwargs.get("dehb_seed", None),
         )
+        np.random.seed(self.dehb_kwargs.get("dehb_seed", None))
+
         dehb = HydraDEHB(
             self.config,
             arguments,
