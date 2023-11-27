@@ -154,7 +154,7 @@ class HydraDEHB(dehb.DEHB):
         if self.wandb_project:
             stats = {}
             stats["optimization_time"] = time.time() - self.start
-            stats["incumbent_performance"] = self.inc_score
+            stats["incumbent_performance"] = -self.inc_score
             stats["num_steps"] = self.current_total_steps
             stats["inc_config"] = self.inc_config
             wandb.log(stats)
